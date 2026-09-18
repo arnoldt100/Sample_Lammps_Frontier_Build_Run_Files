@@ -3,7 +3,6 @@
 # This file configures the programming environment for the AMD programming
 # environment 8.6.0 with rocm 7.0.* Frontier supercomputer.
 
-
 # ----------------------------------------------------
 # Provides a unique label for this build configuration.
 #
@@ -24,12 +23,11 @@ export LEP_LABEL="cpe_26.03_roc_7.0"
 # ----------------------------------------------------
 export LEP_INSTALLATION_DIR="${HOME}/sw/lammps_mixed_precision/${LEP_LABEL}"
 
-
 # ----------------------------------------------------
 # Warning!
 #
 # The below environmental variables should be sufficient
-# to build lammps. Only modify unless neccssary.
+# to build LAMMPS. Only modify unless neccssary.
 #
 # ----------------------------------------------------
 
@@ -62,7 +60,7 @@ export LEP_CXX_COMPILER="hipcc"
 export LEP_C_COMPILER="hipcc"
 
 # ----------------------------------------------------
-# An array of Frontier module to load to set the
+# An array of Frontier modules to load to set the
 # programming environment.
 #
 # ----------------------------------------------------
@@ -72,7 +70,7 @@ my_programming_environment=("PrgEnv-amd"
   "craype-accel-amd-gfx90a"
   "cray-fftw/3.3.10.11" )
 
-
 for tmp_module in "${my_programming_environment[@]}"; do
     module load "${tmp_module}"
 done
+

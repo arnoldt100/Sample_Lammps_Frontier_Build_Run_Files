@@ -57,4 +57,54 @@ have the path to the LAMMPS package:
 
 ## Building LAMMPS
 
+In the directory `${LEP_TOP_LEVEL}/programming_environment_configurations`
+we have sample build configurations. We use `cpe_26.03_rocm_7.0` as an
+illustrative case.
+
+(1) Change to directory `cpe_26.03_rocm_7.0`:
+
+    cd ${LEP_TOP_LEVEL}/programming_environment_configurations/cpe_26.03_rocm_7.0
+
+This directory contains 2 files:
+
+    cpe_26.03_rocm_7.0.sh
+    configure_build_lammps.sh
+
+Sourcing the file `cpe_26.03_rocm_7.0.sh` will set the programming and run enviroment.
+Executing the fuke `configure_build_lammps.sh` will build the LAMMPS package.
+
+(2) Set up the programming and run environment
+
+Edit the file `configure_build_lammps.sh` by setting the environmental
+variables 
+
+    LEP_LABEL
+    LEP_INSTALLATION_DIR
+
+The variable `LEP_LABEL` can be set to any string. It is used as a label or tag to
+help differentiate different build configurations. Note this variable is used 
+to form unix file paths so please use alphanumeric characters and underscores. We
+will form valid UNIX file paths with `LEP_LABEL`. 
+
+The variable `LEP_INSTALLATION_DIR` sets the path to where the LAMMPS package
+will be installed. No other variables need be modified for this build
+configuration.  Note that variable `LEP_INSTALLATION_DIR` need not be formed
+from `LEP_LABEL`.
+
+After editing file `cpe_26.03_rocm_7.0.sh`, source it:
+
+    source ./cpe_26.03_rocm_7.0.sh
+
+to set your programming and runtime environment.
+
+(3) Building LAMMPS
+
+To build LAMMPS run the following command:
+
+    ./configure_build_lammps.sh
+
+If the build is successful, then one will find the LAMMPS binary in
+the directory `${LEP_INSTALLATION_DIR}/bin`. 
+
+    
 ## Sample Run Configurations 
