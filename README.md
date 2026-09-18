@@ -22,9 +22,8 @@ the batch files to run the sample configurations.
 Lastly, one needs a LAMMPS source. This package builds LAMMPS
 using CMake.
 
-## Prerequisites
 (1) The first step is to modify the file `lep.lammps.sh` to point to your LAMMPS
-package. This file when sourced sets the environmental variables
+package. This file when sourced sets the environmental variables:
 
     LEP_TOP_LEVEL
     LEP_LAMMPS_ROOT
@@ -35,13 +34,14 @@ repository.
 The environmental `LEP_LAMMPS_ROOT` points the top level of yours LAMMPS
 package.
 
-To get a LAMMPS package, run the following commands inside this package 
-`src` directory.
+To get a LAMMPS package, run the following commands:
 
     cd ./src
     git clone git@github.com:lammps/lammps.git
+    cd ../
 
-Then modify `LEP_LAMPS_ROOT` to point to `${LEP_TOP_LEVEL}/src/lammps`.
+Then modify `LEP_LAMPS_ROOT` in file `lep.lammps.sh` to point to
+`${LEP_TOP_LEVEL}/src/lammps`.
     
     export LEP_LAMMPS_ROOT="${LEP_TOP_LEVEL}/src/lammps"
 
@@ -50,8 +50,10 @@ Then modify `LEP_LAMPS_ROOT` to point to `${LEP_TOP_LEVEL}/src/lammps`.
     source ./lep.lammps.sh
 
 It's very important to run the source command within this package top level directory or
-many scripts will break.  If successful,  echoing `${LEP_LAMMPS_ROOT}` will
-have the path to the LAMMPS package.
+many scripts will break.  Echoing `${LEP_LAMMPS_ROOT}` will
+have the path to the LAMMPS package:
+
+    echo ${LEP_LAMMPS_ROOT}
 
 ## Build LAMMPS
 
