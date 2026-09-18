@@ -55,6 +55,6 @@ have the path to the LAMMPS package:
 
     echo ${LEP_LAMMPS_ROOT}
 
-## Build LAMMPS
+## Building LAMMPS
 
 ## Sample Run Configurations 
