@@ -25,7 +25,7 @@ cmake \
 # Here we build and install the lammps binaries.
 cd ${LEP_PATH_TO_LAMMPS_BUILD_TREE}
 cmake --build ./ -j ${nm_threads}
-cmake --install ./ -j ${nm_threads}
+cmake --install ./ 
 
 # Here we record the lammps git commit and Frontier programming enviroment
 git log -1 > ${LEP_INSTALLATION_DIR}/lammps_git_commit.txt
