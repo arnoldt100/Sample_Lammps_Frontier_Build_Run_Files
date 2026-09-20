@@ -12,7 +12,7 @@ variable c_pico_femto string 1000 # The conversion factor to convert pico to fem
 # -----------------
 # The simulation run number.
 # -----------------
-variable exp_nm string "1-node-8-gpu"
+variable exp_nm string "1-node-2-gpu"
 variable run_nm string "0"
 
 # -----------------

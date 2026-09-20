@@ -34,7 +34,7 @@ declare -r box_size="ar_large_box"
 declare -r parent_work_dir="ar_box_large_for_wael"
 declare -r child_work_dir="PC-${exp_nm}-${box_size}-solid_liquid-${prec}-${initial_temperature}K-${final_temperature}K"
 declare -r label="PC-${exp_nm}-${run_nm}-${box_size}-solid_liquid-${prec}-${initial_temperature}K-${final_temperature}K"
-declare -r initial_configuration="IC-6-0-ar_med_box-solid_liquid-double_precision-79.0K-79.0K.production.1000000.restart"
+declare -r initial_configuration="IC-1-0-ar_large_box-solid_liquid-double_precision-75.0K-75.0K.production.100000.restart"
 declare -r initial_configuration_compressed="${initial_configuration}.gz"
 
 # ----------------------------------------------------

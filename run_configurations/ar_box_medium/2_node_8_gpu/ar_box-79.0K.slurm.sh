@@ -7,7 +7,7 @@
 #SBATCH -t 0:30:00
 #SBATCH -N 2
 #SBATCH -p batch
-#SBATCH -q debug
+#SBATCH -q develop
 
 echo "Node list: $SLURM_JOB_NODELIST"
 # ----------------------------------------------------

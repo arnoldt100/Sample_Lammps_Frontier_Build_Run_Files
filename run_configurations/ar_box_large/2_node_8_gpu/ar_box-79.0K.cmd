@@ -69,7 +69,7 @@ variable my_timeout_check string "10.0" # In simulation picoseconds
 #
 # The simulation time for  0.5 fs/step
 # -----------------
-variable simulation_time string "0.07" # The simulation time in nanoseconds
+variable simulation_time string "0.035" # The simulation time in nanoseconds
 variable nm_steps equal round(${simulation_time}*${c_nano_femto}/${timestep})
 
 # -----------------

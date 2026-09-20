@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #SBATCH -A stf006
-#SBATCH -J pc-1-node-1-gpu-0_ar_small_box-solid_liquid-double_precision-79.0K-79.0K
+#SBATCH -J pc-1-node-4-gpu-0_ar_large_box-solid_liquid-double_precision-79.0K-79.0K
 #SBATCH -o %x-%j.out
 #SBATCH -e %x-%j.err
 #SBATCH -t 0:30:00
@@ -10,7 +10,6 @@
 #SBATCH -q develop
 
 echo "Node list: $SLURM_JOB_NODELIST"
-
 # ----------------------------------------------------
 # Declare the top level batch launch directory.
 #
@@ -28,14 +27,15 @@ declare -r temp="79.0"
 declare -r intitial_temperature="79.0"
 declare -r final_temperature="79.0"
 declare -r trial_pdamp="500"
-declare -r exp_nm="1-node-1-gpu"
+declare -r exp_nm="1-node-4-gpu"
 declare -r run_nm="0"
 declare -r prec="double_precision"
-declare -r box_size="ar_small_box"
-declare -r parent_work_dir="ar_box_small_for_wael"
+declare -r box_size="ar_large_box"
+declare -r parent_work_dir="ar_box_large_for_wael"
 declare -r child_work_dir="PC-${exp_nm}-${box_size}-solid_liquid-${prec}-${initial_temperature}K-${final_temperature}K"
 declare -r label="PC-${exp_nm}-${run_nm}-${box_size}-solid_liquid-${prec}-${initial_temperature}K-${final_temperature}K"
-declare -r initial_configuration="IC-1-ar_solid_liquid-double_precision-pdamp_500-rcut_28.0-75.0K.production.200000.restart"
+declare -r initial_configuration="IC-1-0-ar_large_box-solid_liquid-double_precision-75.0K-75.0K.production.100000.restart"
+declare -r initial_configuration_compressed="${initial_configuration}.gz"
 
 # ----------------------------------------------------
 # The name of this file.
@@ -106,7 +106,7 @@ declare -r command_file="ar_box-${temp}K.cmd"
 #
 # ----------------------------------------------------
 declare -r number_nodes=1
-declare -r number_tasks_per_node=1
+declare -r number_tasks_per_node=4
 declare -r number_tasks=$((number_nodes * number_tasks_per_node))
 declare -r number_logical_cpus_per_task=1
 declare -r number_cpus_per_task=1
@@ -123,9 +123,10 @@ cd ${batch_launch_directory}
 
 cp "${batch_launch_directory}/${my_submit_script}" "${workdir}"
 cp "${batch_launch_directory}/${command_file}" "${workdir}"
-cp "${batch_launch_directory}/../${initial_configuration}" "${workdir}"
+cp "${batch_launch_directory}/../${initial_configuration}.gz" "${workdir}"
 
 cd ${workdir}
+gunzip "${initial_configuration_compressed}"
 
 srun --nodes "${number_nodes}" \
   --ntasks-per-node "${number_tasks_per_node}" \
@@ -134,6 +135,6 @@ srun --nodes "${number_nodes}" \
   --threads-per-core="${number_hardware_threads_per_core}" \
   --cpu-bind=threads \
   -m block:cyclic \
-  "${BIN}" -l ${lammps_log_file} -kokkos on g 1 -sf kk -in "${command_file}"
+  "${BIN}" -l ${lammps_log_file} -kokkos on g 8 -sf kk -in "${command_file}"
 
 cd ${batch_launch_directory}

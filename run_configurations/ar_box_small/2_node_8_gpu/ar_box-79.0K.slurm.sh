@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 #SBATCH -A stf006
-#SBATCH -J pc-2-node-0_ar_small_box-solid_liquid-double_precision-79.0K-79.0K
+#SBATCH -J pc-2-node-8-gpu_0_ar_small_box-solid_liquid-double_precision-79.0K-79.0K
 #SBATCH -o %x-%j.out
 #SBATCH -e %x-%j.err
 #SBATCH -t 0:30:00
 #SBATCH -N 2
 #SBATCH -p batch
-#SBATCH -q debug
+#SBATCH -q develop
 
 echo "Node list: $SLURM_JOB_NODELIST"
 
@@ -28,7 +28,7 @@ declare -r temp="79.0"
 declare -r intitial_temperature="79.0"
 declare -r final_temperature="79.0"
 declare -r trial_pdamp="500"
-declare -r exp_nm="2-node"
+declare -r exp_nm="2-node-8-gpu"
 declare -r run_nm="0"
 declare -r prec="double_precision"
 declare -r box_size="ar_small_box"
