@@ -137,13 +137,25 @@ run the command
 
 This will submit the job to Frontier queues. This script does the following:
 
-    (1) Create a work  directory ${MEMBERWORK}/stf006/${parent_work_dir}/${child_work_dir}/run-nm-${run_nm}/${SLURM_JOBID}
+    (1) Creates a work  directory ${MEMBERWORK}/stf006/${parent_work_dir}/${child_work_dir}/run-nm-${run_nm}/${SLURM_JOBID}
     (2) Copies all input file to the work directory
     (3) Runs the simulations.
 
-This will generate 2 files in the wor directory:
+This will generate 2 files in the work directory:
 
     (1) A LAMMPS log file `*.log`
     (2) A file named `velocity_seed.txt`
 
 The log file contains information of the simulation.
+
+# Changing the simualtion run time.
+
+To change the simulation run time edit the following line in the LAMMPS
+command file `ar_box-79.0K.cmd'
+
+    variable simulation_time string "0.035" # The simulation time in nanoseconds
+
+The runtime is roughly proportional to the simulation time. In the above case
+to approximately double the run time change 0.035 to 0.70. 
+
+
