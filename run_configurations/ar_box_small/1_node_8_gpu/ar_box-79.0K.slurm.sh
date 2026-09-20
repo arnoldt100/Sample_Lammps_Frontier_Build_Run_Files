@@ -119,7 +119,6 @@ fi
 mkdir -p ${workdir}
 
 cd ${batch_launch_directory}
-cp ../
 cp "${batch_launch_directory}/${my_submit_script}" "${workdir}"
 cp "${batch_launch_directory}/${command_file}" "${workdir}"
 cp "${batch_launch_directory}/../${initial_configuration}" "${workdir}"

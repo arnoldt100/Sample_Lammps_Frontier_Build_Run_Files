@@ -28,7 +28,7 @@ variable npt_tdamp string "100"
 variable npt_pdamp string "500"
 
 # -----------------
-# If this a continuation of a run, then 
+# If this a continuation of a run, then
 # be sure to set simulation_continuation to 1.0.
 # 
 # If this is a not a continuation, and we are using the restart/data file soley for an
@@ -62,7 +62,7 @@ variable velocity_random_seed equal floor(random(1,1000,${seed}%65534))
 # Settings for a graceful shutdown of simulation.
 # -----------------
 variable my_timeout_time string "23:45:00" # In hrs:min:secs
-variable my_timeout_check string "100.0" # In simulation picoseconds
+variable my_timeout_check string "10.0" # In simulation picoseconds
 
 # -----------------
 # The simulation time for the run during the npt production runs.
