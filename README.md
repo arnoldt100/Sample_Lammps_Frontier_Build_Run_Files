@@ -58,20 +58,20 @@ have the path to the LAMMPS package:
 ## Building LAMMPS
 
 In the directory `${LEP_TOP_LEVEL}/programming_environment_configurations`
-we have sample build configurations. We use `cpe_26.03_rocm_7.0` as an
+we have sample build configurations. We use `cpe_25.09_rocm_6.4.2` as an
 illustrative case.
 
-(1) Change to directory `cpe_26.03_rocm_7.0`:
+(1) Change to directory `cpe_25.09_rocm_6.4.2`:
 
-    cd ${LEP_TOP_LEVEL}/programming_environment_configurations/cpe_26.03_rocm_7.0
+    cd ${LEP_TOP_LEVEL}/programming_environment_configurations/cpe_25.09_rocm_6.4.2
 
 This directory contains 2 files:
 
-    cpe_26.03_rocm_7.0.sh
+    cpe_25.09_rocm_6.4.2.sh
     configure_build_lammps.sh
 
-Sourcing the file `cpe_26.03_rocm_7.0.sh` will set the programming and run enviroment.
-Executing the fuke `configure_build_lammps.sh` will build the LAMMPS package.
+Sourcing the file `cpe_25.09_rocm_6.4.2.sh` will set the programming and run enviroment.
+Executing the file `configure_build_lammps.sh` will build the LAMMPS package.
 
 (2) Set up the programming and run environment
 
@@ -93,7 +93,7 @@ from `LEP_LABEL`.
 
 After editing file `cpe_26.03_rocm_7.0.sh`, source it:
 
-    source ./cpe_26.03_rocm_7.0.sh
+    source ./cpe_25.09_rocm_6.4.2
 
 to set your programming and runtime environment.
 
@@ -104,7 +104,28 @@ To build LAMMPS run the following command:
     ./configure_build_lammps.sh
 
 If the build is successful, then one will find the LAMMPS binary in
-the directory `${LEP_INSTALLATION_DIR}/bin`. 
+the directory `${LEP_INSTALLATION_DIR}/bin`.
 
     
-## Sample Run Configurations 
+## Sample Run Configurations
+
+We have severl run configurations which can be found in directory
+`$LEP_TOP_LEVEL/run_configurations/`
+
+We will use run configurations `ar_box_small/1_node_1_gpu` for illustrative purposes.
+Change directory to `$LEP_TOP_LEVEL/run_configurations/ar_box_small/1_node_1_gpu`
+
+    cd $LEP_TOP_LEVEL/run_configurations/ar_box_small/1_node_1_gpu
+
+This directory contains 2 files
+
+    ar_box-79.0K.cmd
+    ar_box-79.0K.slurm.sh
+
+Modify the file `ar_box-79L.slurm.sh` to use your project ID.
+
+    #SBATCH -A stf006
+
+
+    #SBATCH -A <to_your_project_id>
+
