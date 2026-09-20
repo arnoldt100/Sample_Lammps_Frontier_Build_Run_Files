@@ -126,6 +126,24 @@ Modify the file `ar_box-79L.slurm.sh` to use your project ID.
 
     #SBATCH -A stf006
 
+         to
 
     #SBATCH -A <to_your_project_id>
 
+From within the directory `$LEP_TOP_LEVEL/run_configurations/ar_box_small/1_node_1_gpu`
+run the command
+
+    sbatch ./ar_box-79.0K.slurm.sh
+
+This will submit the job to Frontier queues. This script does the following:
+
+    (1) Create a work  directory ${MEMBERWORK}/stf006/${parent_work_dir}/${child_work_dir}/run-nm-${run_nm}/${SLURM_JOBID}
+    (2) Copies all input file to the work directory
+    (3) Runs the simulations.
+
+This will generate 2 files in the wor directory:
+
+    (1) A LAMMPS log file `*.log`
+    (2) A file named `velocity_seed.txt`
+
+The log file contains information of the simulation.
