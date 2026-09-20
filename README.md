@@ -1,38 +1,38 @@
-# Introduction.  
+# Introduction
 
-This package provides sample build and run files for LAMMPS 
-on OLCF's Frontier supercomputer. 
+This package provides sample build and run files for LAMMPS
+on OLCF's Frontier supercomputer.
 
-There are 3 steps:
+There are three steps:
 
-* Satisfying prerequisites
-* Building LAMMPS
-* Running a sample configuration
+1. Satisfying the prerequisites
+2. Building LAMMPS
+3. Running a sample configuration
 
 
 ## Prerequisites
-These examples were tested in a bash shell. If your preferred
-shell is not bash, you may need to modify some of the
-files to your shell environment. The bash scripts are simple
-and adapting them should be easy. 
+These examples were tested in a Bash shell. If your preferred
+shell is not Bash, you may need to modify some files for your
+shell environment. The Bash scripts are simple, so adapting
+them should be straightforward.
 
-One will need your project ID to configure
-the batch files to run the sample configurations. 
+You will need your project ID to configure the batch files
+used to run the sample configurations.
 
-Lastly, one needs a LAMMPS source. This package builds LAMMPS
+Finally, you will need a LAMMPS source tree. This package builds LAMMPS
 using CMake.
 
 (1) The first step is to modify the file `lep.lammps.sh` to point to your LAMMPS
-package. This file when sourced sets the environmental variables:
+source tree. When sourced, this file sets the following environment variables:
 
     LEP_TOP_LEVEL
     LEP_LAMMPS_ROOT
 
-The environmental variable `LEP_TOP_LEVEL` points the top level of this working git
-repository.
+The environment variable `LEP_TOP_LEVEL` points to the top-level directory of this
+Git repository.
 
-The environmental `LEP_LAMMPS_ROOT` points the top level of yours LAMMPS
-package.
+The environment variable `LEP_LAMMPS_ROOT` points to the top-level directory of your
+LAMMPS source tree.
 
 To get a LAMMPS package, run the following commands:
 
@@ -40,89 +40,88 @@ To get a LAMMPS package, run the following commands:
     git clone git@github.com:lammps/lammps.git
     cd ../
 
-Then modify `LEP_LAMPS_ROOT` in file `lep.lammps.sh` to point to
+Then modify `LEP_LAMMPS_ROOT` in the file `lep.lammps.sh` to point to
 `${LEP_TOP_LEVEL}/src/lammps`.
     
     export LEP_LAMMPS_ROOT="${LEP_TOP_LEVEL}/src/lammps"
 
-(2) From within this package top level,  source the file `lep.lammps.sh'
+(2) From the top-level directory of this package, source the file `lep.lammps.sh`:
 
     source ./lep.lammps.sh
 
-It's very important to run the source command within this package top level directory or
-many scripts will break.  Echoing `${LEP_LAMMPS_ROOT}` will
-have the path to the LAMMPS package:
+It is important to run the source command from the top-level directory of this package;
+otherwise, many scripts will fail. Echoing `${LEP_LAMMPS_ROOT}` should display the path
+to the LAMMPS source tree:
 
     echo ${LEP_LAMMPS_ROOT}
 
 ## Building LAMMPS
 
-In the directory `${LEP_TOP_LEVEL}/programming_environment_configurations`
-we have sample build configurations. We use `cpe_25.09_rocm_6.4.2` as an
-illustrative case.
+The directory `${LEP_TOP_LEVEL}/programming_environment_configurations` contains
+sample build configurations. We use `cpe_25.09_rocm_6.4.2` as an illustrative case.
 
 (1) Change to directory `cpe_25.09_rocm_6.4.2`:
 
     cd ${LEP_TOP_LEVEL}/programming_environment_configurations/cpe_25.09_rocm_6.4.2
 
-This directory contains 2 files:
+This directory contains two files:
 
     cpe_25.09_rocm_6.4.2.sh
     configure_build_lammps.sh
 
-Sourcing the file `cpe_25.09_rocm_6.4.2.sh` will set the programming and run enviroment.
-Executing the file `configure_build_lammps.sh` will build the LAMMPS package.
+Sourcing the file `cpe_25.09_rocm_6.4.2.sh` sets the programming and runtime environment.
+Executing the file `configure_build_lammps.sh` builds the LAMMPS package.
 
 (2) Set up the programming and run environment
 
-Edit the file `configure_build_lammps.sh` by setting the environmental
-variables 
+Edit the file `configure_build_lammps.sh` by setting the following environment
+variables:
 
     LEP_LABEL
     LEP_INSTALLATION_DIR
 
 The variable `LEP_LABEL` can be set to any string. It is used as a label or tag to
-help differentiate different build configurations. Note this variable is used 
-to form unix file paths so please use alphanumeric characters and underscores. We
-will form valid UNIX file paths with `LEP_LABEL`. 
+help differentiate build configurations. Note that this variable is used
+to form Unix file paths, so use only alphanumeric characters and underscores. This
+will ensure that `LEP_LABEL` produces valid Unix file paths.
 
 The variable `LEP_INSTALLATION_DIR` sets the path to where the LAMMPS package
-will be installed. No other variables need be modified for this build
-configuration.  Note that variable `LEP_INSTALLATION_DIR` need not be formed
+will be installed. No other variables need to be modified for this build
+configuration. Note that `LEP_INSTALLATION_DIR` does not need to be formed
 from `LEP_LABEL`.
 
-After editing file `cpe_26.03_rocm_7.0.sh`, source it:
+After editing the file `cpe_25.09_rocm_6.4.2.sh`, source it:
 
-    source ./cpe_25.09_rocm_6.4.2
+    source ./cpe_25.09_rocm_6.4.2.sh
 
 to set your programming and runtime environment.
 
 (3) Building LAMMPS
 
-To build LAMMPS run the following command:
+To build LAMMPS, run the following command:
 
     ./configure_build_lammps.sh
 
-If the build is successful, then one will find the LAMMPS binary in
+If the build is successful, the LAMMPS binary will be located in
 the directory `${LEP_INSTALLATION_DIR}/bin`.
 
     
 ## Sample Run Configurations
 
-We have severl run configurations which can be found in directory
-`$LEP_TOP_LEVEL/run_configurations/`
+Several run configurations are available in the directory
+`${LEP_TOP_LEVEL}/run_configurations/`.
 
-We will use run configurations `ar_box_small/1_node_1_gpu` for illustrative purposes.
-Change directory to `$LEP_TOP_LEVEL/run_configurations/ar_box_small/1_node_1_gpu`
+We use `ar_box_small/1_node_1_gpu` as an illustrative example. Change to the directory
+`${LEP_TOP_LEVEL}/run_configurations/ar_box_small/1_node_1_gpu`:
 
-    cd $LEP_TOP_LEVEL/run_configurations/ar_box_small/1_node_1_gpu
+    cd ${LEP_TOP_LEVEL}/run_configurations/ar_box_small/1_node_1_gpu
 
-This directory contains 2 files
+This directory contains two files:
 
     ar_box-79.0K.cmd
     ar_box-79.0K.slurm.sh
 
-Modify the file `ar_box-79L.slurm.sh` to use your project ID.
+Modify the file `ar_box-79.0K.slurm.sh` to use your project ID.
 
     #SBATCH -A stf006
 
@@ -130,32 +129,33 @@ Modify the file `ar_box-79L.slurm.sh` to use your project ID.
 
     #SBATCH -A <to_your_project_id>
 
-From within the directory `$LEP_TOP_LEVEL/run_configurations/ar_box_small/1_node_1_gpu`
-run the command
+From within the directory `${LEP_TOP_LEVEL}/run_configurations/ar_box_small/1_node_1_gpu`,
+run the following command:
 
     sbatch ./ar_box-79.0K.slurm.sh
 
-This will submit the job to Frontier queues. This script does the following:
+This submits the job to the Frontier queues. The script does the following:
 
-    (1) Creates a work  directory ${MEMBERWORK}/stf006/${parent_work_dir}/${child_work_dir}/run-nm-${run_nm}/${SLURM_JOBID}
-    (2) Copies all input file to the work directory
-    (3) Runs the simulations.
+    (1) Creates a work directory `${MEMBERWORK}/stf006/${parent_work_dir}/${child_work_dir}/run-nm-${run_nm}/${SLURM_JOBID}`.
+    (2) Copies all input files to the work directory.
+    (3) Runs the simulation.
 
-This will generate 2 files in the work directory:
+This generates two files in the work directory:
 
     (1) A LAMMPS log file `*.log`
     (2) A file named `velocity_seed.txt`
 
-The log file contains information of the simulation.
+The log file contains information about the simulation.
 
-# Changing the simualtion run time.
+# Changing the Simulation Runtime
 
-To change the simulation run time edit the following line in the LAMMPS
-command file `ar_box-79.0K.cmd'
+To change the simulation runtime, edit the following line in the LAMMPS
+command file `ar_box-79.0K.cmd`:
 
     variable simulation_time string "0.035" # The simulation time in nanoseconds
 
-The runtime is roughly proportional to the simulation time. In the above case
-to approximately double the run time change 0.035 to 0.70. 
+The runtime is roughly proportional to the simulation time. In this example,
+to approximately double the runtime, change `0.035` to `0.070`.
 
-
+Be careful to not exceed the SLURM batch wall time. All jobs are currently set for 30 
+minutes.
