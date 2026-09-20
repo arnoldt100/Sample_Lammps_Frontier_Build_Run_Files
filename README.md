@@ -158,4 +158,5 @@ command file `ar_box-79.0K.cmd'
 The runtime is roughly proportional to the simulation time. In the above case
 to approximately double the run time change 0.035 to 0.70. 
 
-
+Be careful to not exceed the slurm batch wall time. All jobs are currently set for 30 
+minutes. 
