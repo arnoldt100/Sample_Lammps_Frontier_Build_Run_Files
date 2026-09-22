@@ -74,3 +74,5 @@ for tmp_module in "${my_programming_environment[@]}"; do
     module load "${tmp_module}"
 done
 
+export LD_LIBRARY_PATH=$CRAY_LD_LIBRARY_PATH:$LD_LIBRARY_PATH
+
